@@ -1,0 +1,16 @@
+.Weather {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  font-size: 16rem;
+  justify-content: center;
+  font-family: Bangers, cursive;
+}
+
+.Weather--cold {
+  font-family: 'Freckle Face', cursive;
+}
+
+.Weather--hot {
+  font-family: 'Monoton', cursive;
+}

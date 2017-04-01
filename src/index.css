@@ -1,0 +1,21 @@
+* {
+  cursor: none;
+}
+
+html, body, #root {
+  height: 100%;
+  font-size: 10px;
+  font-family: 'Inconsolata', monospace;
+  background-color: #000;
+  color: #fff;
+}
+
+.App {
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 2rem;
+  overflow: hidden;
+}

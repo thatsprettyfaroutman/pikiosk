@@ -1,0 +1,12 @@
+.Trams {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  font-size: 16rem;
+  justify-content: center;
+  font-family: Bangers, cursive;
+}
+
+.Trams span {
+  font-size: 4rem;
+}
