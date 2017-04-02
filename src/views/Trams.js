@@ -17,9 +17,10 @@ export default ({ routeShortName='9' }) => {
   )
 
   let time = parseInt(timeBetweenTramAndNow(data[0].realtimeArrival) / 60, 10)
-  if ( time > 60 ) time = <span>'¯\_(ツ)_/¯'</span>
+  const isHours = time >= 60
+  if ( isHours ) time = Math.round(time/60)
 
   return (
-    <Container className="Trams">{ time }</Container>
+    <Container className="Trams">{ time }{ isHours && <span>h</span> }</Container>
   )
 }

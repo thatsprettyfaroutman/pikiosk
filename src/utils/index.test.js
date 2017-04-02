@@ -1,35 +1,21 @@
 import {
-  getMinutesToNextMatching,
+  timeBetweenTramAndNow,
 } from './'
 
-describe('getMinutesToNextMatching', () => {
-  it('should return minutes to next half hour', () => {
-    let testDate = new Date()
-    testDate.setHours(20, 15, 14)
-    expect(getMinutesToNextMatching(testDate)).toBe(15)
+describe('timeBetweenTramAndNow', () => {
 
-    testDate = new Date()
-    testDate.setHours(10, 10, 50)
-    expect(getMinutesToNextMatching(testDate)).toBe(20)
+  const time = (hours, minutes) => hours * 60 * 60 + minutes * 60
 
-    testDate = new Date()
-    testDate.setHours(12, 50, 34)
-    expect(getMinutesToNextMatching(testDate)).toBe(10)
+  it('should return minutes to next tram arrival or something', () => {
+    expect(timeBetweenTramAndNow(time(9,10),time(9,0))).toBe(time(0, 10))
+    expect(timeBetweenTramAndNow(time(8,30),time(8,0))).toBe(time(0, 30))
+    expect(timeBetweenTramAndNow(time(18,0),time(12,0))).toBe(time(6, 0))
+  })
 
-    testDate = new Date()
-    testDate.setHours(12, 59, 23)
-    expect(getMinutesToNextMatching(testDate)).toBe(1)
-
-    testDate = new Date()
-    testDate.setHours(12, 29, 4)
-    expect(getMinutesToNextMatching(testDate)).toBe(1)
-
-    testDate = new Date()
-    testDate.setHours(12, 30, 1)
-    expect(getMinutesToNextMatching(testDate)).toBe(30)
-
-    testDate = new Date()
-    testDate.setHours(12, 0, 31)
-    expect(getMinutesToNextMatching(testDate)).toBe(30)
+  it('should return minutes correctly when day changes', () => {
+    expect(timeBetweenTramAndNow(time(24,10),time(23,59))).toBe(time(0, 11))
+    expect(timeBetweenTramAndNow(time(25,0),time(0,0))).toBe(time(1, 0))
+    expect(timeBetweenTramAndNow(time(24,30),time(1,0))).toBe(time(0, -30))
+    expect(timeBetweenTramAndNow(time(24,10),time(0,11))).toBe(time(0, -1))
   })
 })

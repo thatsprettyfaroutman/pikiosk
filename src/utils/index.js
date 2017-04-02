@@ -6,12 +6,16 @@ export const nowTodayInSeconds = () => {
   return Math.round((Date.now() - start.getTime()) / 1000)
 }
 
-export const timeBetweenTramAndNow = (tramTime) => {
+export const timeBetweenTramAndNow = (tramTime, now=nowTodayInSeconds()) => {
+  // !!! Such haxy solutions, don't use in anything real
   const SECONDS_IN_DAY = 86400
-  const now = nowTodayInSeconds()
   let diff = tramTime - now
-  if (diff < SECONDS_IN_DAY / -2) {
-    diff = tramTime + SECONDS_IN_DAY - now
+
+  // Midnight passing hax thingies
+  if (diff > SECONDS_IN_DAY) {
+    return (tramTime - SECONDS_IN_DAY) - now
+  } else if (diff > SECONDS_IN_DAY / 2 && tramTime > now) {
+    return tramTime - ( now + SECONDS_IN_DAY )
   }
   return diff
 }
