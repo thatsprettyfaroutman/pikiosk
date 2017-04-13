@@ -9,9 +9,9 @@ import 'normalize.css'
 import 'Ionicons/ionicons.css'
 import './index.css'
 
-const NUM_VIEWS = 3
+const NUM_VIEWS = 2
 const REFRESH_INTERVAL_MS = 1000
-const VIEW_CHANGE_INTERVAL_MS = 10000
+const VIEW_CHANGE_INTERVAL_MS = 5000
 
 class App extends Component {
   constructor() {
@@ -52,9 +52,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.state.view === 0 && <Plex />}
         { this.state.view === 1 && <Trams />}
         { this.state.view === 2 && <Weather />}
+        { this.state.view === 0 && <Plex />}
       </div>
     )
   }
