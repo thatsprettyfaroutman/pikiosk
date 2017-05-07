@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import poll from 'App/services/poll'
 import Container from 'App/components/Container'
 import Loading from 'App/components/Loading'
+import AwesomeText from 'App/components/AwesomeText'
 
 import './Weather.css'
 
@@ -11,12 +12,12 @@ export default () => {
   if (typeof temp === 'undefined') return <Loading />
   return (
     <Container className="Weather">
-      <span className={classNames({
+      <AwesomeText className={classNames({
         'Weather--hot': temp > 10,
         'Weather--cold': temp < 0,
       })}>
-        { temp }
-      </span>°
+        { temp }°
+      </AwesomeText>
     </Container>
   )
 }

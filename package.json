@@ -12,7 +12,7 @@
     "test": "NODE_PATH=./src jest --verbose src/**/*.test.js",
     "clean-dist": "rm -fr dist",
     "copy-dist-assets": "cp ./src/*.html ./dist/ && cp -R src/assets/ dist/assets/",
-    "deploy": "yarn build && bash ./deploy.sh"
+    "deploy": "yarn build && bash ./deploy-server.sh && bash ./deploy.sh"
   },
   "dependencies": {
     "classnames": "^2.2.5",

@@ -38,8 +38,6 @@ class App extends Component {
         view: nextView
       })
     }, VIEW_CHANGE_INTERVAL_MS)
-
-
   }
 
   componentWillUnmount() {
@@ -50,11 +48,11 @@ class App extends Component {
   }
 
   render() {
+    const views = [<Trams />, <Weather />, <Plex />]
     return (
       <div className="App">
-        { this.state.view === 1 && <Trams />}
-        { this.state.view === 2 && <Weather />}
-        { this.state.view === 0 && <Plex />}
+        <iframe src="http://tv.giphy.com/swag" />
+        { views[this.state.view] }
       </div>
     )
   }

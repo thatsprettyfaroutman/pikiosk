@@ -2,9 +2,10 @@
   display: flex;
   flex: 1;
   flex-direction: row;
-  font-size: 16rem;
+  font-size: 30rem;
   justify-content: center;
-  font-family: Bangers, cursive;
+  font-family: 'Modak', cursive;
+  /*font-family: 'Raleway Dots', cursive;*/
 }
 
 .Weather--cold {

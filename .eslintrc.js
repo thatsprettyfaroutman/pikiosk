@@ -26,6 +26,7 @@ module.exports = {
     "beforeAll": true
   },
   "rules": {
+    "no-console": 0,
     "indent": [
       "error",
       2,
@@ -43,6 +44,7 @@ module.exports = {
       "error",
       "never"
     ],
+    "no-case-declarations": 0,
     "eqeqeq": "warn",
     "react/jsx-uses-vars": "warn",
     "react/jsx-uses-react": 1

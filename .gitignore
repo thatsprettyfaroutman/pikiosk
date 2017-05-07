@@ -6,3 +6,4 @@ npm-debug.log
 dist
 server/static/*
 deploy.sh
+deploy-server.sh

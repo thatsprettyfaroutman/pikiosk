@@ -14,10 +14,15 @@ const doQuery = query => new Promise(resolve => {
   })
     .then(res => {
       if (res.status !== 200) throw new Error(res.status)
-      resolve(res.json())
+      const data = res.json()
+      return data
+    })
+    .then(data => {
+      console.log('[INFO] Trams =>', data)
+      resolve(data)
     })
     .catch(err => {
-      console.warn(err) // eslint-disable-line
+      console.log('[ERROR] Trams =>', err) // eslint-disable-line
       setTimeout(() => {
         resolve(doQuery(query))
       }, 10000)

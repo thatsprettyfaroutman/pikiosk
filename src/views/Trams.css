@@ -2,12 +2,9 @@
   display: flex;
   flex: 1;
   flex-direction: row;
-  font-size: 16rem;
+  font-size: 30rem;
   justify-content: center;
-  font-family: Bangers, cursive;
-}
-
-.Trams span {
-  font-size: 8rem;
-  margin-left: 2rem;
+  font-family: Modak, cursive;
+  /*font-family: Bangers, cursive;*/
+  /*font-family: 'Raleway Dots', cursive;*/
 }

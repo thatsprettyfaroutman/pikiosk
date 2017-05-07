@@ -7,12 +7,17 @@ export const getJson = query => new Promise((resolve, reject) => {
     .then(res => {
       switch (res.status) {
         case 200:
-          resolve(res.json())
-          break
+          const data = res.json()
+          return data
 
         default:
+          console.log('[ERROR] Weather => Couldnt get weather')
           reject('nope')
       }
+    })
+    .then(data => {
+      console.log('[INFO] Weather =>', data)
+      resolve(data)
     })
 })
 
