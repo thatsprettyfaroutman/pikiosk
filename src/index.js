@@ -9,9 +9,13 @@ import 'normalize.css'
 import 'Ionicons/ionicons.css'
 import './index.css'
 
-const NUM_VIEWS = 2
+const NUM_VIEWS = 3
 const REFRESH_INTERVAL_MS = 1000
 const VIEW_CHANGE_INTERVAL_MS = 5000
+
+setTimeout(() => {
+  window.location.reload(false)
+}, 60000 * 30)
 
 class App extends Component {
   constructor() {
