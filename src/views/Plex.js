@@ -9,19 +9,28 @@ import './Plex.css'
 export default () => {
   let data = poll.data.plex
   if (!data || !data.length) return <Loading />
+
+  const specialItem = data.find(item => item.showName.toLowerCase().indexOf('morty') !== -1)
+
   data = data.filter((_, i) => i < 3)
   return (
     <Container className="Plex">
-      {data.map(item => <PlexItem key={item.key} item={item} />)}
+      {
+        specialItem ? <SpecialPlexItem item={specialItem} /> :
+        data.map(item => <PlexItem key={item.key} item={item} />)
+      }
     </Container>
   )
 }
 
+const SpecialPlexItem = ({item}) => (
+  <div className="Plex__specialItem">
+    NEW { item.showName.toUpperCase() } OMFG
+  </div>
+)
 
 const PlexItem = ({item}) => {
-
   const days = differenceInCalendarDays(Date.now(), item.addedAt)
-
 
   return (
     <div className="Plex__item" style={{ backgroundImage: `url(${item.thumb})` }}>

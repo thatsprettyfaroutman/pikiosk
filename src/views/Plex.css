@@ -4,7 +4,7 @@
   flex-direction: row;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 1rem 0.5rem;
+  padding: 0;
   justify-content: flex-start;
   align-items: center;
 }
@@ -31,4 +31,32 @@
   font-size: 3rem;
   background-color: color(#000 a(50%));
   padding: 0.5rem;
+}
+
+
+.Plex__specialItem {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Monoton', sans-serif;
+  font-size: 100px;
+  animation-name: Plex__specialItem;
+  animation-duration: 300ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+
+@keyframes Plex__specialItem {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #f00;
+  }
+  50% {
+    background-color: #f00;
+    color: #fff;
+  }
 }

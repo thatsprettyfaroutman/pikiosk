@@ -52,13 +52,19 @@ export default () => plexFind('/library/sections/2/recentlyAdded').then(res => {
   const items = res.filter(item => {
     const daysDiff = differenceInCalendarDays(Date.now(), item.addedAt * 1000)
     const id = item.grandparentRatingKey
+    const title = item.grandparentTitle
     const viewCount = item.viewCount || 0
-    if (daysDiff <= 7 && viewCount === 0 && picked.indexOf(id) === -1) {
+
+    if (picked.indexOf(id) !== -1) return false
+    if (viewCount !== 0) return false
+    if (title.toLowerCase().indexOf('morty') !== -1 || daysDiff <= 7) {
       picked.push(id)
       return true
     }
+
     return false
   })
+
   return Promise.all(items.map(stripItem))
 }, err => {
   console.error('Could not connect to server', err) // eslint-disable-line
