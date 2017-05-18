@@ -19,7 +19,8 @@ function find(options, criterias) {
       uri: options
     }
   }
-  if (options.uri === undefined) {
+
+  if (!options || options.uri === undefined) {
     throw new TypeError('Requires uri parameter')
   }
 

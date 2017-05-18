@@ -12,30 +12,51 @@ const loadImage = (plexItemArt, filename) => new Promise(resolve => {
     }, () => {
       resolve(`${PATH_START}/static/${filename}.jpg`)
     })
-  })
+  }).catch(error => console.log(error))
 })
 
 const stripItem = item => new Promise(resolve => {
+  const itemData = {
+    key: `${item.grandparentRatingKey}-${item.parentRatingKey}-${item.ratingKey}`,
+    showName: item.grandparentTitle,
+    season: item.parentIndex,
+    episode: item.index,
+    addedAt: item.addedAt * 1000,
+    summary: item.summary,
+    thumb: null,
+    art: null,
+  }
+
+  if (!item.grandparentThumb) {
+    return resolve(itemData)
+  }
+
   loadImage(item.grandparentThumb, `${item.grandparentRatingKey}-thumb`).then(thumb => {
     loadImage(item.grandparentArt, `${item.grandparentRatingKey}-art`).then(art => {
-      resolve({
-        key: `${item.grandparentRatingKey}-${item.parentRatingKey}-${item.ratingKey}`,
-        showName: item.grandparentTitle,
-        season: item.parentIndex,
-        episode: item.index,
-        addedAt: item.addedAt * 1000,
-        summary: item.summary,
-        thumb,
-        art,
-      })
+      itemData.thumb = thumb
+      itemData.art = art
+      resolve(itemData)
     })
   })
 })
 
 export default () => plexFind('/library/sections/2/recentlyAdded').then(res => {
+  const picked = []
+
+  res.sort((a, b) => {
+    const aa = a.viewCount || 0
+    const bb = b.viewCount || 0
+    return aa - bb
+  })
+
   const items = res.filter(item => {
     const daysDiff = differenceInCalendarDays(Date.now(), item.addedAt * 1000)
-    if (daysDiff <= 7) return true //&& item.viewCount === 0
+    const id = item.grandparentRatingKey
+    const viewCount = item.viewCount || 0
+    if (daysDiff <= 7 && viewCount === 0 && picked.indexOf(id) === -1) {
+      picked.push(id)
+      return true
+    }
     return false
   })
   return Promise.all(items.map(stripItem))
